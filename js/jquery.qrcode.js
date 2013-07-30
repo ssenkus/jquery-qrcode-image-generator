@@ -44,7 +44,7 @@
 			}
 			// return just built canvas
 			return canvas;
-		}
+		};
 
 		// from Jon-Carlos Rivera (https://github.com/imbcmdth)
 		var createTable	= function(){

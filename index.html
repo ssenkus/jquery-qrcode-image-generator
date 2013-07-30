@@ -11,23 +11,28 @@ and open the template in the editor.
     </head>
     <body>
         <h1>jQuery QR Code Image Generator</h1>
-        <div id="qrcode"></div>
+        <div id="container" style="margin: auto; padding: 20px; width: 532px; background-color: #eaeaea;">
+            <div style="float: left;width: 256px; height: 256px; margin-right:10px " id="qrcode"></div>
+
+        </div>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="js/html2canvas.js"></script> 
         <script src="js/jquery.qrcode.js"></script>
         <script src="js/qrcode.js"></script>
         <script>
             $(document).ready(function() {
-                
-                
+
+
                 $('#qrcode').qrcode({
-                    text: "size doesn't matter"
+                    render: "canvas",
+                    text: "http://www.example.com"
                 });
-                
-                
+
+
                 html2canvas($('#qrcode'), {
                     onrendered: function(canvas) {
-                        document.body.appendChild(canvas);
+                        document.getElementById('container').appendChild(canvas);
                     }});
 
             });

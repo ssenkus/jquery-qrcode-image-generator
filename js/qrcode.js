@@ -1157,7 +1157,7 @@ QRRSBlock.getRSBlocks = function(typeNumber, errorCorrectLevel) {
 	
 	var rsBlock = QRRSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
 	
-	if (rsBlock == undefined) {
+	if (rsBlock === undefined) {
 		throw new Error("bad rs block @ typeNumber:" + typeNumber + "/errorCorrectLevel:" + errorCorrectLevel);
 	}
 

@@ -1,5 +1,24 @@
 html {
     width: 100%;
     font-family: Helvetica, Arial, sans-serif;   
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    width: 100%;
+    background-color: #777;
+    color: #fff;
+    margin: 0; padding: 0;
+    text-align: center;
+    
+}
+
+h1 {
+    margin: 0 0 20px;
+    text-align: center;
+    background-color: #000;
+    font-size: 50px;
 }
 
