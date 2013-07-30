@@ -13,7 +13,7 @@ and open the template in the editor.
         <h1>jQuery QR Code Image Generator</h1>
         <div id="container" style="margin: auto; padding: 20px; width: 532px; background-color: #eaeaea;">
             <div style="float: left;width: 256px; height: 256px; margin-right:10px " id="qrcode"></div>
-
+            <img id="target" src="" />
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -32,7 +32,9 @@ and open the template in the editor.
 
                 html2canvas($('#qrcode'), {
                     onrendered: function(canvas) {
-                        document.getElementById('container').appendChild(canvas);
+                        var data = canvas.toDataURL();
+                        $('#target').attr('src', data);
+                        //document.getElementById('container').appendChild(canvas);
                     }});
 
             });
