@@ -1,0 +1,37 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery QR Code Image Generator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <h1>jQuery QR Code Image Generator</h1>
+        <div id="qrcode"></div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="js/html2canvas.js"></script> 
+        <script src="js/jquery.qrcode.js"></script>
+        <script src="js/qrcode.js"></script>
+        <script>
+            $(document).ready(function() {
+                
+                
+                $('#qrcode').qrcode({
+                    text: "size doesn't matter"
+                });
+                
+                
+                html2canvas($('#qrcode'), {
+                    onrendered: function(canvas) {
+                        document.body.appendChild(canvas);
+                    }});
+
+            });
+
+        </script>
+    </body>
+</html>
