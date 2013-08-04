@@ -11,6 +11,12 @@ and open the template in the editor.
     </head>
     <body>
         <h1>jQuery QR Code Image Generator</h1>
+
+        <label >Data:</label>
+        <form action="">
+            <input id="qrcodeData" type="text" name="qrcode-data" />
+            <button id="generateQRCode" type="submit">Generate QR Code</button>
+        </form>
         <div id="container" style="margin: auto; padding: 20px; width: 532px; background-color: #eaeaea;">
             <div style="float: left;width: 256px; height: 256px; margin-right:10px " id="qrcode"></div>
             <img id="target" src="" />
@@ -25,25 +31,27 @@ and open the template in the editor.
             $(document).ready(function() {
                 var qrcodeImageData;
 
-                $('#qrcode').qrcode({
-                    render: "canvas",
-                    text: "http://www.example.com"
+
+                $('#generateQRCode').on('click', function(e) {
+                    e.preventDefault();
+                    $('#qrcode').empty();
+                    $('#qrcode').qrcode({
+                        render: "canvas",
+                        text: $('#qrcodeData').val()
+                    });
+
+
+                    html2canvas($('#qrcode'), {
+                        onrendered: function(canvas) {
+                            qrcodeImageData = canvas.toDataURL();
+                            $('#target').attr('src', qrcodeImageData);
+                        }});
+
                 });
-
-
-                html2canvas($('#qrcode'), {
-                    onrendered: function(canvas) {
-                        qrcodeImageData = canvas.toDataURL();
-                        $('#target').attr('src', qrcodeImageData);
-                        //document.getElementById('container').appendChild(canvas);
-                    }});
-
-
 
                 $('#saveWithPHP').on('click', function() {
                     $.ajax({
                         url: window.location + 'php/save-image.php',
-                        
                         data: "img=" + encodeURIComponent(qrcodeImageData),
                         type: 'post',
                         success: function(data) {
