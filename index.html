@@ -14,6 +14,7 @@ and open the template in the editor.
         <div id="container" style="margin: auto; padding: 20px; width: 532px; background-color: #eaeaea;">
             <div style="float: left;width: 256px; height: 256px; margin-right:10px " id="qrcode"></div>
             <img id="target" src="" />
+            <button id="saveWithPHP" type="button">Save with PHP!</button>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -22,7 +23,7 @@ and open the template in the editor.
         <script src="js/qrcode.js"></script>
         <script>
             $(document).ready(function() {
-
+                var qrcodeImageData;
 
                 $('#qrcode').qrcode({
                     render: "canvas",
@@ -32,11 +33,29 @@ and open the template in the editor.
 
                 html2canvas($('#qrcode'), {
                     onrendered: function(canvas) {
-                        var data = canvas.toDataURL();
-                        $('#target').attr('src', data);
+                        qrcodeImageData = canvas.toDataURL();
+                        $('#target').attr('src', qrcodeImageData);
                         //document.getElementById('container').appendChild(canvas);
                     }});
 
+
+
+                $('#saveWithPHP').on('click', function() {
+                    $.ajax({
+                        url: window.location + 'php/save-image.php',
+                        
+                        data: "img=" + encodeURIComponent(qrcodeImageData),
+                        type: 'post',
+                        success: function(data) {
+                            alert(data);
+
+                        }
+
+
+                    });
+
+
+                });
             });
 
         </script>
